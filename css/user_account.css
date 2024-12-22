@@ -1,0 +1,93 @@
+/* css/user_account.css */
+
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Main Content */
+.main-content {
+    display: flex; /* Use flexbox to align items */
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align items at the top */
+}
+
+/* User Content Box */
+.user-content {
+    background-color: #fff; /* White background for the user box */
+    border: 2px dashed #007bff; /* Match admin content box border style */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    margin-top: 180px; /* Space above the box */
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    width: 400px; /* Ensure both forms have the same width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+/* User Details */
+.user-details {
+    margin-top: 20px; /* Space above user details */
+}
+
+.user-details p {
+    font-size: 16px; /* Font size for paragraphs */
+    margin: 10px 0; /* Space above and below each paragraph */
+}
+
+.user-details strong {
+    color: #007bff; /* Highlighted color for strong text */
+}
+
+/* Success and Error Messages */
+.success-message,
+.error-message {
+    position: fixed; /* Fixed position for messages */
+    top: 80px; /* Adjusted to account for navbar height */
+    left: 50%; /* Center messages horizontally */
+    transform: translateX(-50%); /* Center messages horizontally */
+    padding: 15px 25px; /* Padding for messages */
+    border-radius: 5px; /* Rounded corners for messages */
+    z-index: 1000; /* Ensure messages appear above other content */
+    width: auto; /* Automatic width */
+    max-width: 80%; /* Maximum width for messages */
+    text-align: center; /* Center text in messages */
+}
+
+.success-message {
+    background-color: #d4edda; /* Light green background for success */
+    color: #155724; /* Dark green text color */
+    border: 1px solid #c3e6cb; /* Light green border */
+}
+
+.error-message {
+    background-color: #f8d7da; /* Light red background for errors */
+    color: #721c24; /* Dark red text color */
+    border: 1px solid #f5c6cb; /* Light red border */
+}
+
+/* Success and Error Messages Paragraph */
+.success-message p,
+.error-message p {
+    margin: 0; /* No margin for paragraphs in messages */
+    font-size: 14px; /* Font size for messages */
+}
+
+/* Responsive Design */
+@media (max-width: 850px) {
+    .main-content {
+        flex-direction: column; /* Stack elements on smaller screens */
+    }
+
+    .user-content {
+        width: 100%; /* Full width on smaller screens */
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .success-message,
+    .error-message {
+        top: 80px; /* Keep consistent with other messages */
+    }
+}

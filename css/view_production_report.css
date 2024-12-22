@@ -1,0 +1,301 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    margin-top: 100px; /* Adjust this to match the height of your navbar */
+    margin-left: 0;
+    
+    
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height to center vertically */
+    
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Space between form elements */
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+}
+
+form label {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+form input[type="date"],
+form input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 150px;
+    text-align: center;
+}
+
+/* Button Styling */
+form button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    border: 2px dashed #184a96;
+    font-size: 14px;
+    background-color: #184a96;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: white;
+    color: #184a96;
+}
+
+/* Production Report Styles */
+.production-report {
+    background: #fff;
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #184a96;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+    min-height: 30vh;
+}
+
+table {
+    width: 100%;
+    min-width: 3000px; /* Ensure minimum width for large number of columns */
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #184a96;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 100px; /* Ensure enough space for columns */
+}
+
+td {
+    font-size: 12px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Dropdown Styles */
+.dropdown-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px; /* Space between each dropdown */
+    margin-bottom: 20px; /* Space between dropdowns and the table */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-label {
+    display: inline-block;
+    font-size: 14px;
+    color: #555;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.dropdown-btn {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px 28px;
+    width: 300px;
+    height: 40px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    vertical-align: middle;
+    position: relative;
+}
+
+.dropdown-btn .arrow {
+    font-size: 18px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 130px;
+    max-height: 150px;
+    overflow-y: auto;
+    left: -60px;
+}
+
+.dropdown-content a {
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Total Row Styling */
+tr:last-child td {
+    font-weight: bold;
+    background-color: #f0f8ff;
+    color: #000;
+}
+
+
+/* Button Styling */
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.dropdown .btn-download {
+    padding: 8px 16px;
+    color: white;
+    background-color: #184a96;
+    color: white;
+    border: 2px dotted #184a96;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.btn-view:hover, .btn-download:hover {
+    background-color: white;
+    color: #184a96;
+}
+
+
+/* Dropdown Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 130px;
+}
+
+.dropdown-content a {
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    main {
+        margin-left: 0;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    form {
+        flex-direction: column; /* Stack elements vertically on small screens */
+        gap: 15px;
+    }
+
+    form input[type="date"],
+    form input[type="text"],
+    form button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 1200px; /* Adjust for small screens */
+    }
+}

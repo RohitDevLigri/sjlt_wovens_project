@@ -1,0 +1,138 @@
+/* Reset some default browser styles for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* General styling for index page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+} 
+
+/* Main Content */
+.main-content {
+        padding: 20px;
+        margin-top: 150px; /* Adjust this to match the height of your navbar */
+        margin-left: 0;
+}
+
+.message {
+    margin: 20px auto;
+    padding: 15px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.message.error {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}
+
+.message.success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+/* -------------------------
+   Import CSV Form Styles
+-------------------------- */
+
+/* Container for the CSV Import Section */
+#CSVFile.mainbartab-content {
+    background-color: #fff;
+    padding: 25px 30px;
+    max-width: 600px;
+    margin: 0 auto; /* Centers the container */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    border: 2px dashed #007bff;
+    transition: border-color 0.3s ease;
+}
+
+/* Heading Style */
+#import-heading, .import-heading { /* Target the import heading */
+    text-align: center; /* Center-align the heading */
+    margin-bottom: 35px; /* Increase space below the heading */
+    color: #184a96;
+    font-size: 24px; /* Optional: Adjust font size if needed */
+}
+
+/* Form Styling */
+#CSVFile form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* File Input Styling */
+#CSVFile input[type="file"] {
+    padding: 10px;
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+/* Change border color on hover */
+#CSVFile input[type="file"]:hover {
+    border-color: #0056b3;
+}
+
+/* Submit Button Styling */
+.btn.btn-primary {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #184a96;
+    color: white;
+    border: 2px dotted #184a96;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+/* Submit Button Hover Effect */
+.btn.btn-primary:hover {
+    background-color: white;
+    color: #184a96;
+}
+
+/* -------------------------
+   Responsive Design
+-------------------------- */
+
+/* Adjustments for Mobile Devices */
+@media (max-width: 600px) {
+    #CSVFile.mainbartab-content {
+        padding: 20px;
+    }
+
+    .btn.btn-primary {
+        width: 100%;
+    }
+
+    #CSVFile input[type="file"] {
+        max-width: 100%;
+    }
+
+    .import-heading {
+        padding: 10px 0;
+    }
+}

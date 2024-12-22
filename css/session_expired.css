@@ -1,0 +1,55 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light gray background */
+    color: #343a40; /* Dark gray text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background-color: white; /* White background for the content */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    max-width: 400px; /* Maximum width for content */
+    width: 90%; /* Responsive width */
+    border: 2px dotted #007bff; /* Dotted border for the container */
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 16px; /* Space below the heading */
+    color: #dc3545; /* Bootstrap danger color for emphasis */
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 12px; /* Space below paragraphs */
+}
+
+button {
+    padding: 12px 25px; /* Padding for the button */
+    font-size: 16px; /* Font size for button text */
+    background-color: #184a96; /* Bootstrap primary color */
+    color: white; /* White text */
+    border: 2px dotted #184a96; /* Dotted border for the button */
+    border-radius: 3px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and color */
+    font-weight: bold; /* Bold text for the button */
+}
+
+button:hover {
+    color: #184a96; /* White text */
+    background-color: #ffffff; /* Darker blue on hover */
+}

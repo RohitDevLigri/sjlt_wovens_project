@@ -1,0 +1,4 @@
+Date,Sort_code,Construction,Machine,Warp_Set_No,Weft_Lot_No,Picks,Length,Percentage,F_Stops,Fsph,Atpfs,Fcmpx,W_Stops,Wsph,Atpws,Wcmpx,B_Stops,Bsph,Atpbs,Bcmpx,Speed
+01-09-2024,1001,"60*80 195*72/4 123"" Dobby HB",LOOM09,Null,Null,344282,121.2,79.7,28.1,0.85,0.65,0.75,2.1,1.05,0.95,1.1,0.5,0.35,0.25,0.4,100.5
+01-09-2024,1024,"60sCC*60CW 162*56/2 122"" Plain",LOOM11,Null,Null,354237,124.7,82.1,23.2,0.9,0.7,0.8,2.3,1.1,1,1.15,0.6,0.4,0.3,0.45,110.6
+01-09-2024,1030,"Const60*60* 175*56/2 119""Pins Striperuction C",LOOM14,Null,Null,372128,131,86.2,22.4,0.8,0.6,0.7,2,1,0.9,1.05,0.7,0.45,0.35,0.5,120.75

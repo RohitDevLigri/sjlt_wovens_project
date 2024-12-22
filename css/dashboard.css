@@ -1,0 +1,174 @@
+/* Reset default browser styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+    padding-top: 85px; /* Adjust based on navbar height */
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9; /* Light background for better readability */
+    border-bottom: 1px solid #ddd; /* Separator line */
+    margin-bottom: 20px;
+}
+
+.main-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.main-content p {
+    font-size: 18px;
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Dashboard Grid */
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
+
+/* Loom Boxes */
+.c {
+    border: 2px dotted #007bff;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    width: 120px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    background-color: #fff; /* White background for looms */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */
+}
+
+.c:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}
+
+.c form {
+    margin-bottom: 10px;
+}
+
+.c input[type="submit"] {
+    background-color: #184a96; /* Blue background for buttons */
+    padding: 8px 12px;
+    font-size: 14px;
+    color: white;
+    border: 2px dashed #184a96;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.c input[type="submit"]:hover {
+    background-color: white;
+    color: #184a96;
+}
+
+.c p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #333;
+}
+
+/* Styling for sortdetails section */
+.sortdetails {
+    margin: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    font-family: Arial, sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .c {
+        width: 80px;
+        padding: 10px;
+    }
+
+    .c input[type="submit"] {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .c p {
+        font-size: 14px;
+    }
+
+    .main-content h2 {
+        font-size: 20px;
+    }
+
+    .main-content p {
+        font-size: 16px;
+    }
+}
+
+/* Additional styling for the monthly and daily charts */
+.chart-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #fff; /* White background for the charts */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+#monthlyChart, #dailyChart {
+    width: 100%;
+    height: 400px;
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        padding: 10px;
+    }
+
+    #monthlyChart, #dailyChart {
+        height: 300px;
+    }
+}
+
+/* Optional: Styling for active navigation items if applicable */
+nav ul li.active {
+    background-color: #4CAF50; /* Highlight active nav item */
+    color: white;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 8px 12px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+nav ul li a:hover {
+    background-color: #ddd;
+    color: #000;
+}

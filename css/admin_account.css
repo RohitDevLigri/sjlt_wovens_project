@@ -1,0 +1,111 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Admin Content Box */
+.admin-content {
+    background-color: #fff;
+    border: 2px dashed #007bff; /* Match login form border style */
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 100px;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Ensure both forms have the same width */
+    box-sizing: border-box;
+}
+
+/* Admin Details */
+.admin-details {
+    margin-top: 20px;
+}
+
+.admin-details p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.admin-details strong {
+    color: #007bff;
+}
+
+/* Success and Error Messages */
+.success-message,
+.error-message {
+    position: fixed;
+    top: 80px; /* Adjusted to account for navbar height */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 5px;
+    z-index: 1000;
+    width: auto;
+    max-width: 80%;
+    text-align: center;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-message {
+    background-color: #f8d7da; /* More appropriate color for errors */
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Success and Error Messages Paragraph */
+.success-message p,
+.error-message p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Register Link */
+.register-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff; /* Match button color from login.css */
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+/* Hover Effect for Register Link */
+.register-link:hover {
+    background-color: white;
+    color: #007bff;
+    border: 2px dotted #007bff; /* Match button hover effect */
+}
+
+/* Responsive Design */
+@media (max-width: 850px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .admin-content {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .success-message,
+    .error-message {
+        top: 80px; /* Keep consistent with other messages */
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "vendor/production_report",
+    "description": "production_report",
+    "type": "project",
+    "require": {
+        "phpoffice/phpspreadsheet": "^2.2",
+        "tecnickcom/tcpdf": "^6.7",
+        "dompdf/dompdf": "^3.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\ProductionReport\\": "src/"
+        }
+    },
+    "minimum-stability": "beta"
+}

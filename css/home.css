@@ -1,0 +1,13 @@
+/* General styling for index page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Content */
+.main-content {
+        padding: 20px;
+        margin-top: 100px; /* Adjust this to match the height of your navbar */
+        margin-left: 0;
+}

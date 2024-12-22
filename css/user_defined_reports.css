@@ -1,0 +1,202 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffb300;
+    padding: 19px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.user-profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.content {
+    padding: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.report-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dropdown {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.filter-btn {
+    background-color: #f45d5d;
+    color: #ffffff;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #ff8080;
+}
+
+.date-picker {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.calendar-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shift-buttons-left, .shift-buttons-right {
+    display: flex;
+    gap: 5px;
+}
+
+.shift-code {
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.shift-code:hover {
+    background-color: #d1d1d1;
+}
+
+.shift-code.selected {
+    background-color: #ffb300;
+    color: #ffffff;
+}
+
+.period-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.period-btn {
+    background-color: #e0e0e0;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.period-btn.active {
+    background-color: #ffb300;
+    color: #ffffff;
+}
+
+.parameters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.load-btn {
+    background-color: #00b894;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.action-buttons {
+    position: fixed;
+    top: 40px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.settings-btn, .print-btn, .export-dropdown-btn {
+    background-color: #3b3b98;
+    color: #ffffff;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.export-dropdown-btn {
+    position: relative;
+}
+
+.export-options {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.export-options .export-btn {
+    background-color: #3b3b98;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.export-dropdown-btn:hover + .export-options,
+.export-options:hover {
+    display: block;
+}
+
+/* Hover effect for dropdowns and date pickers */
+.dropdown:hover,
+.date-picker:hover {
+    background-color: #f0f0f0;
+}
+
+/* Display selected shift outside the calendar */
+.selected-shift-display {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
