@@ -1,0 +1,196 @@
+/* Global Styles */ 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    margin-top: 100px; /* Adjust this to match the height of your navbar */
+    margin-left: 0;
+}
+
+/* Center Heading */
+h1 {
+    text-align: center; /* Centers the text horizontally */
+    margin-bottom: 20px; /* Adds spacing below the heading */
+    color: #184a96; /* Optional: Matches the theme */
+    font-weight: bold;
+}
+
+
+/* Buttons and Other Elements */
+.buttons-container {
+    margin-bottom: 20px;
+}
+
+.buyerBtn {
+    padding: 6px 12px; /* Smaller button size */
+    font-size: 12px;
+    border: 2px dashed #184a96;
+    background-color: #184a96;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buyerBtn:hover {
+    background-color: white;
+    color: #184a96;
+}
+
+.buyerBtn:focus {
+    outline: none;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+form input[type="text"],
+form select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    width: 150px;
+    text-align: center;
+}
+
+/* Table Styling for Buyer Details */
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+    margin-top: 20px;
+    border: 2px solid #ddd; /* Add border around the table */
+    border-radius: 8px;
+    background-color: white;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    min-width: 1000px; /* Ensure the table doesn't go too wide */
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 11px; /* Smaller font size for readability */
+}
+
+th {
+    background-color: #184a96;
+    color: white;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+td {
+    font-size: 11px;
+    white-space: nowrap; /* Prevent text from wrapping inside cells */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." when the text overflows */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Checkbox and Delete Button Styling */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-container input {
+    width: auto;
+    height: 20px;
+}
+
+/* Delete Button */
+.delete-btn {
+    padding: 6px 12px; /* Smaller delete button size */
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c9302c;
+}
+
+/* Create New Buyer Button */
+.create-new-order {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    color: #184a96;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        margin-left: 0;
+    }
+
+    table {
+        font-size: 10px;
+    }
+
+    table th,
+    table td {
+        padding: 6px 10px;
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 800px; /* Adjust for smaller screens */
+    }
+
+    form {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    form input[type="text"],
+    form select,
+    form button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

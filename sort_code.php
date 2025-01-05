@@ -1,10 +1,10 @@
 <?php
 require 'dbconnect_master.php';
-$db = new Connection();
-$conn = $db->getConnection();
+$connection = new MasterConnection();
+$conn = $connection->getConnection();
 // Fetch all agents
-function fetchAgents($conn) {
-    $stmt = $conn->prepare("SELECT * FROM buyer_details ORDER BY buyer_code ASC");
+function fetchMasters($conn) {
+    $stmt = $conn->prepare("SELECT * FROM sort_code ORDER BY sort_code ASC");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($input['action'])) {
         if ($input['action'] === 'get_next_code') {
             // Fetch the next available agent_code
-            $stmt = $conn->prepare("SELECT buyer_code + 1 AS next_code FROM buyer_details t1 
-                                    WHERE NOT EXISTS (SELECT 1 FROM buyer_details t2 WHERE t2.buyer_code = t1.buyer_code + 1) 
-                                    ORDER BY buyer_code ASC LIMIT 1");
+            $stmt = $conn->prepare("SELECT sort_code + 1 AS next_code FROM sort_code t1 
+                                    WHERE NOT EXISTS (SELECT 1 FROM sort_code t2 WHERE t2.sort_code = t1.sort_code + 1) 
+                                    ORDER BY sort_code ASC LIMIT 1");
             $stmt->execute();
             $next_code = $stmt->fetch(PDO::FETCH_ASSOC)['next_code'] ?? 1;
 
@@ -23,64 +23,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
         if ($input['action'] === 'add') {
-            $buyer_name = $input['buyer_name'];
-            $invoice_address = $input['invoice_address'];
-            $contact_no = $input['contact_no'];
-            $contact_person = $input['contact_person'];
-            $delivery_address = $input['delivery_address'];
-            // Find the lowest available agent_code
-            $stmt = $conn->prepare("SELECT buyer_code + 1 AS next_code FROM buyer_details t1 
-                                    WHERE NOT EXISTS (SELECT 1 FROM buyer_details t2 WHERE t2.buyer_code = t1.buyer_code + 1) 
-                                    ORDER BY buyer_code ASC LIMIT 1");
+            $sort_code = $input['sort_code'];
+            $warp_count = $input['warp_count'];
+            $weft_count = $input['weft_count'];
+            $epi = $input['epi'];
+            $ppi = $input['ppi'];
+            $ply = $input['ply'];
+            $weave = $input['weave'];
+            // Find the lowest available sort_code
+            $stmt = $conn->prepare("SELECT sort_code + 1 AS next_code FROM sort_code t1 
+                                    WHERE NOT EXISTS (SELECT 1 FROM sort_code t2 WHERE t2.sort_code = t1.sort_code + 1) 
+                                    ORDER BY sort_code ASC LIMIT 1");
             $stmt->execute();
             $next_code = $stmt->fetch(PDO::FETCH_ASSOC)['next_code'] ?? 1;
-            $stmt = $conn->prepare("INSERT INTO buyer_details (buyer_code, buyer_name, invoice_address, contact_no, contact_person, delivery_address)
-                                    VALUES (:buyer_code, :buyer_name, :invoice_address, :contact_no, :contact_person, :delivery_address)");
-            $stmt->bindParam(':buyer_code', $next_code);
-            $stmt->bindParam(':buyer_name', $buyer_name);
-            $stmt->bindParam(':invoice_address', $invoice_address);
-            $stmt->bindParam(':contact_no', $contact_no);
-            $stmt->bindParam(':contact_person', $contact_person);
-            $stmt->bindParam(':delivery_address', $delivery_address);
+            $stmt = $conn->prepare("INSERT INTO sort_code (sort_code, warp_count, weft_count, epi, ppi, ply, weave)
+                                    VALUES (:sort_code, :warp_count, :weft_count, :epi, :ppi, :ply, :weave)");
+            $stmt->bindParam(':sort_code', $next_code);
+            $stmt->bindParam(':warp_count', $warp_count);
+            $stmt->bindParam(':weft_count', $weft_count);
+            $stmt->bindParam(':epi', $epi);
+            $stmt->bindParam(':ppi', $ppi);
+            $stmt->bindParam(':ply', $ply);
+            $stmt->bindParam(':weave', $weave);
 
             $stmt->execute();
             echo json_encode([
                 'success' => true,
-                'buyer_code' => $next_code,
-                'buyer_name' => $buyer_name,
-                'invoice_address' => $invoice_address,
-                'contact_no' => $contact_no,
-                'contact_person' => $contact_person,
-                'delivery_address' => $delivery_address
+                'sort_code' => $next_code,
+                'warp_count' => $warp_count,
+                'weft_count' => $weft_count,
+                'epi' => $epi,
+                'ppi' => $ppi,
+                'ply' => $ply,
+                'weave' => $weave
             ]);
             exit;
         }
         if ($input['action'] === 'delete') {
-            $agent_codes = $input['buyer_codes'];
-            $placeholders = implode(',', array_fill(0, count($agent_codes), '?'));
-            $stmt = $conn->prepare("DELETE FROM buyer_details WHERE buyer_code IN ($placeholders)");
-            $stmt->execute($buyer_codes);
+            $sort_codes = $input['sort_codes'];
+            $placeholders = implode(',', array_fill(0, count($sort_codes), '?'));
+            $stmt = $conn->prepare("DELETE FROM sort_code WHERE sort_code IN ($placeholders)");
+            $stmt->execute($sort_codes);
             echo json_encode(['success' => true]);
             exit;
         }
     }
 }
 // Fetch agents for display
-$buyers = fetchAgents($conn);
+$sorts = fetchMasters($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent Details</title>
+    <title>Sort Code</title>
     <link rel="stylesheet" href="css/master_details.css">
     <?php include 'navbar.php'; ?>
 </head>
 <body>
     <main>
         <div class="container">
-            <h1>Buyer Details</h1>
+            <h1>Sort Code</h1>
             <button class="master_button" id="addRowBtn">Add</button>
             <button class="master_button" id="deleteRowBtn">Delete</button>
             <form id="masterForm">
@@ -88,24 +92,26 @@ $buyers = fetchAgents($conn);
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="selectAll"></th>
-                            <th>Buyer Code</th>
-                            <th>Buyer Name</th>
-                            <th>Invoice Address</th>
-                            <th>Contact No</th>
-                            <th>Contact Person</th>
-                            <th>delivery Address</th>
+                            <th>Sort Code</th>
+                            <th>Warp Count</th>
+                            <th>Weft Count</th>
+                            <th>EPI</th>
+                            <th>PPI</th>
+                            <th>PLY</th>
+                            <th>Weave</th>
                         </tr>
                     </thead>
                     <tbody id="masterTableBody">
-                        <?php foreach ($buyers as $buyer): ?>
+                        <?php foreach ($sorts as $sort): ?>
                         <tr>
-                            <td><input type="checkbox" class="rowCheckbox" value="<?= $buyer['buyer_code'] ?>"></td>
-                            <td><?= $buyer['buyer_code'] ?></td>
-                            <td><?= $buyer['buyer_name'] ?></td>
-                            <td><?= $buyer['invoice_address'] ?></td>
-                            <td><?= $buyer['contact_no'] ?></td>
-                            <td><?= $buyer['contact_person'] ?></td>
-                            <td><?= $buyer['delivery_address'] ?></td>
+                            <td><input type="checkbox" class="rowCheckbox" value="<?= $sort['sort_code'] ?>"></td>
+                            <td><?= $sort['sort_code'] ?></td>
+                            <td><?= $sort['warp_count'] ?></td>
+                            <td><?= $sort['weft_count'] ?></td>
+                            <td><?= $sort['epi'] ?></td>
+                            <td><?= $sort['ppi'] ?></td>
+                            <td><?= $sort['ply'] ?></td>
+                            <td><?=$sort['weave']?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -138,7 +144,7 @@ $buyers = fetchAgents($conn);
                 popup.style.display = 'none';
             });
             addRowBtn.addEventListener('click', () => {
-                fetch('buyer_details.php', {
+                fetch('sort_code.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ action: 'get_next_code' })
@@ -152,31 +158,37 @@ $buyers = fetchAgents($conn);
                     <td>${data.next_code}</td>
                     <td>
                         <div class="input-container">
-                            <input type="text" name="buyer_name" placeholder="Buyer Name">
+                            <input type="number" name="warp_count" placeholder="Warp Count">
                             <div class="error-message" style="color: red; display: none;">Field required</div>
                         </div>
                     </td>
                     <td>
                         <div class="input-container">
-                            <input type="text" name="invoice_address" placeholder="Invoice Address">
+                            <input type="number" name="weft_count" placeholder="Weft Count">
                             <div class="error-message" style="color: red; display: none;">Field required</div>
                         </div>
                     </td>
                     <td>
                         <div class="input-container">
-                            <input type="text" name="contact_no" placeholder="Contact No">
+                            <input type="number" name="epi" placeholder="Epi">
                             <div class="error-message" style="color: red; display: none;">Field required</div>
                         </div>
                     </td>
                     <td>
                         <div class="input-container">
-                            <input type="text" name="contact_person" placeholder="Contact Person">
+                            <input type="number" name="ppi" placeholder="Ppi">
                             <div class="error-message" style="color: red; display: none;">Field required</div>
                         </div>
                     </td>
                     <td>
                         <div class="input-container">
-                            <input type="text" name="delivery_address" placeholder="Delivery_Address">
+                            <input type="number" name="ply" placeholder="Ply">
+                            <div class="error-message" style="color: red; display: none;">Field required</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-container">
+                            <input type="text" name="weave" placeholder="Weave">
                             <div class="error-message" style="color: red; display: none;">Field required</div>
                         </div>
                     </td>
@@ -213,21 +225,23 @@ $buyers = fetchAgents($conn);
                                 return; // Prevent saving if any field is empty
                             }
                             // Collect data to save
-                            const buyer_name = inputs[0].value.trim();
-                            const invoice_address = inputs[1].value.trim();
-                            const contact_no = inputs[2].value.trim();
-                            const contact_person = inputs[3].value.trim();
-                            const delivery_address = inputs[4].value.trim();
+                            const warp_count = inputs[0].value.trim();
+                            const weft_count = inputs[1].value.trim();
+                            const epi = inputs[2].value.trim();
+                            const ppi = inputs[3].value.trim();
+                            const ply = inputs[4].value.trim();
+                            const weave =inputs[5].value.trim();
                             const dataToSave = {
                                 action: 'add',
-                                buyer_name: buyer_name,
-                                invoice_address: invoice_address,
-                                contact_no: contact_no,
-                                contact_person: contact_person,
-                                delivery_address: delivery_address
+                                warp_count: warp_count,
+                                weft_count: weft_count,
+                                epi: epi,
+                                ppi: ppi,
+                                ply: ply,
+                                weave: weave
                             };
                             // Save data via API request
-                            fetch('buyer_details.php', {
+                            fetch('sort_code.php', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify(dataToSave)
@@ -237,13 +251,14 @@ $buyers = fetchAgents($conn);
                                 if (data.success) {
                                     showPopup('Data saved successfully!');
                                     newRow.innerHTML = `
-                                        <td><input type="checkbox" class="rowCheckbox" value="${data.buyer_code}"></td>
-                                        <td>${data.buyer_code}</td>
-                                        <td>${data.buyer_name}</td>
-                                        <td>${data.invoice_address}</td>
-                                        <td>${data.contact_no}</td>
-                                        <td>${data.contact_person}</td>
-                                        <td>${data.delivery_address}</td>
+                                        <td><input type="checkbox" class="rowCheckbox" value="${data.sort_code}"></td>
+                                        <td>${data.sort_code}</td>
+                                        <td>${data.warp_count}</td>
+                                        <td>${data.weft_count}</td>
+                                        <td>${data.epi}</td>
+                                        <td>${data.ppi}</td>
+                                        <td>${data.ply}</td>
+                                        <td>${data.weave}</td>
                                     `;
                                 }
                             })
@@ -259,10 +274,10 @@ $buyers = fetchAgents($conn);
                     showPopup('No rows selected!');
                     return;
                 }
-                fetch('buyer_details.php', {
+                fetch('sort_code.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'delete', agent_codes: selectedRows })
+                    body: JSON.stringify({ action: 'delete', sort_codes: selectedRows })
                 })
                 .then(response => response.json())
                 .then(data => {

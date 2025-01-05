@@ -3,7 +3,7 @@ require 'dbconnect_master.php';
 $db = new Connection();
 $conn = $db->getConnection();
 // Fetch all agents
-function fetchAgents($conn) {
+function fetchMasters($conn) {
     $stmt = $conn->prepare("SELECT * FROM agent_details ORDER BY agent_code ASC");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 // Fetch agents for display
-$agents = fetchAgents($conn);
+$agents = fetchMasters($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">

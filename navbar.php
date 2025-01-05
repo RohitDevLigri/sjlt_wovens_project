@@ -70,9 +70,19 @@ if (session_status() === PHP_SESSION_NONE) {
                             <a href="#">Sort & Fabric</a>
                         </div>
                     </div>
-                    <a href="#">Buyer Details</a>
-                    <a href="#">Agent Details</a>
+                    <a href="agent_details_summary.php">Agent Details</a>
+                    <a href="buyer_details_summary.php">Buyer Details</a>
+                    <a href="currency_type.php">Currency Type</a>
+                    <a href="certification_details.php">Certification Details</a>
+                    <a href="fiber_composition.php">Fiber Composition</a>
+                    <a href="freight_details.php">Freight Details</a>
+                    <a href="order_type.php">Order Type</a>
+                    <a href="packing_type.php">Packing Type</a>
+                    <a href="sort_code_summary.php">Sort Code</a>
+                    <a href="yarn_count_unit.php">Yarn Count Unit</a>
+                    <a href="traceability_documents.php">Traceability Documents</a>
                     <a href="yarn_supplier_details.php">Yarn Supplier Details</a>
+                    <a href="yarn_quality.php">Yarn Quality</a>
                 </div>
             </div>
             <div class="navbar-dropdown">

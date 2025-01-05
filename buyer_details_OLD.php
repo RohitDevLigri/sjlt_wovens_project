@@ -3,7 +3,7 @@ require 'dbconnect_master.php';
 $db = new Connection();
 $conn = $db->getConnection();
 // Fetch all agents
-function fetchAgents($conn) {
+function fetchMasters($conn) {
     $stmt = $conn->prepare("SELECT * FROM buyer_details ORDER BY buyer_code ASC");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -56,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
         if ($input['action'] === 'delete') {
-            $agent_codes = $input['buyer_codes'];
-            $placeholders = implode(',', array_fill(0, count($agent_codes), '?'));
+            $buyer_codes = $input['buyer_codes'];
+            $placeholders = implode(',', array_fill(0, count($buyer_codes), '?'));
             $stmt = $conn->prepare("DELETE FROM buyer_details WHERE buyer_code IN ($placeholders)");
             $stmt->execute($buyer_codes);
             echo json_encode(['success' => true]);
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 // Fetch agents for display
-$buyers = fetchAgents($conn);
+$buyers = fetchMasters($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -262,7 +262,7 @@ $buyers = fetchAgents($conn);
                 fetch('buyer_details.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'delete', agent_codes: selectedRows })
+                    body: JSON.stringify({ action: 'delete', buyer_codes: selectedRows })
                 })
                 .then(response => response.json())
                 .then(data => {
